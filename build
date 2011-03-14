@@ -1,0 +1,14 @@
+# build environment for cygwin
+
+# bison -d calc1.y    produces calc1.tab.c
+# bison -y -d calc1.y produces y.tab.c (the standard yacc output)
+
+# for calc1 and calc2, you may have to
+# include the following in the lex ".l" file:
+#    extern int yylval;
+
+# example code from http://epaperpress.com/lexandyacc/
+bison -y -d proplogic.y
+flex proplogic.l
+gcc -c y.tab.c lex.yy.c
+gcc y.tab.o lex.yy.o proplogic.c -o proplogicEmitter
